@@ -3,6 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from 'axios'
+// import { Redirect } from 'react-router-dom';
+
+
 
 class SignIn extends Component {
     state = {
@@ -11,26 +14,29 @@ class SignIn extends Component {
     }
     //onChange. changer la valeur du state
     inputemail = event => {
-        this.setState({email: event.target.value});
+        this.setState({ email: event.target.value });
     }
     inputpassword = event => {
-        this.setState({password: event.target.value});
+        this.setState({ password: event.target.value });
     }
     //onSubmit creer un evenement au moment du clic
+
+    
+
     buttonsubmit = event => {
         event.preventDefault();
- 
+
         const user = {
             email: this.state.email,
             password: this.state.password
         };
 
-        axios.post(`http://localhost:4000/sign-in`,user)
+        axios.post(`http://localhost:4000/sign-in`, user)
             .then(res => {
-                console.log(res)
                 console.log(res.data);
-                this.setState({email: ''});
-                this.setState({password: ''});
+                this.setState({ email: '' });
+                this.setState({ password: '' });
+
             })
     }
     render() {
@@ -40,7 +46,7 @@ class SignIn extends Component {
                     <h1>Hello, world!</h1>
                     <p>This is a simple hero unit, a simple jumbotron-style component for calling
                         extra attention to featured content or information.</p>
-                
+
                     <Form onSubmit={this.buttonsubmit}>
 
 

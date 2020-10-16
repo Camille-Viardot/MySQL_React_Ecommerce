@@ -19,7 +19,6 @@ class CreateProducts extends Component {
     }
     inputCategory = event => {
         this.setState({ Category: event.target.value });
-
     }
     inputDescription = event => {
         this.setState({ Description: event.target.value });

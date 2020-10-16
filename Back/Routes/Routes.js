@@ -67,8 +67,8 @@ router.post('/products', function (req, res) {
     }
 })
 
-router.get('/products', function (req, res) {
-    con.query(`SELECT name, prix, photo FROM products`, function (err, result) {
+router.get('/productslist/:id', function (req, res) {
+    con.query(`SELECT productName, prix, photo FROM products INNER JOIN users ON users.id = products.user_affiliate WHERE users.id = '${req.params.id}'`, function (err, result) {
         if (err) throw (err)
         res.json(result)
     })
@@ -76,7 +76,7 @@ router.get('/products', function (req, res) {
 
 router.get('/products/:id', function (req, res) {
     try {
-        con.query(`SELECT productName, prix, photo, description, categorie FROM products INNER JOIN users ON users.id = products.user_affiliate WHERE users.id = '${req.params.id}'`, (err, result) => {
+        con.query(`SELECT productName, prix, photo, description, categorie FROM products WHERE products.id = '${req.params.id}'`, (err, result) => {
             if (err) throw err
             res.json(result)
         })
