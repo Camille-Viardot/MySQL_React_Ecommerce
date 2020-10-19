@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from 'axios'
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -11,6 +11,19 @@ class SignIn extends Component {
     state = {
         email: '',
         password: '',
+        redirect: false
+    }
+
+    setRedirect = () =>{
+        this.setState({
+            redirect: true
+        })
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/Dashboard'/>
+        }
     }
     //onChange. changer la valeur du state
     inputemail = event => {
@@ -42,6 +55,7 @@ class SignIn extends Component {
     render() {
         return (
             <div>
+                {this.renderRedirect()}
                 <Jumbotron>
                     <h1>Hello, world!</h1>
                     <p>This is a simple hero unit, a simple jumbotron-style component for calling
@@ -61,7 +75,7 @@ class SignIn extends Component {
                             <Form.Control type="password" placeholder="Password" onChange={this.inputpassword} />
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">Submit</Button>
+                        <Button onClick= {this.setRedirect} variant="primary" type="submit">Submit</Button>
                     </Form>
                 </Jumbotron>
             </div>

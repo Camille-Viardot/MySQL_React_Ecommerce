@@ -5,25 +5,22 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import {Redirect,Link} from 'react-router-dom';
 
 
 class ProductList extends Component {
+   
+
     state = {
         product: []
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:4000/productslist/1`)
+        axios.get(`http://localhost:4000/productslist/2`)
             .then(res => {
                 // console.log(res.data);
                 this.setState({ product: res.data });
-                // const article = res.data;
-                // for (let i = 0; i < article.length; i++) {
-                //     let element = article[i];
-                //     // console.log(article[i]);
-                //     // console.log(element);
-
-                // }
+              
             })
     }
 
@@ -43,7 +40,7 @@ class ProductList extends Component {
                                     <Card.Text>
                                         {elem.prix}
                                     </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
+                                   <Link to="/ProductPage"> <Button variant="primary">Submit</Button></Link>
                                 </Card.Body>
                             </Card>
                         </div>
