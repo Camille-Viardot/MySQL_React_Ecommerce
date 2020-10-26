@@ -2,18 +2,42 @@ import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import { Redirect } from 'react-router-dom';
 import axios from "axios";
+
+
+
 
 class SignUp extends Component {
     state = {
-        name: "",
-        email: "",
-        password: "",
-        avatar: "",
-    };
+        name: '',
+        email: '',
+        password: '',
+        avatar: '',
+        redirect: false
+         // Redirection fausse par defaut
+        
+    }
+
+     // ---------REDIRECTION SUR LE DASHBOARD
+     setRedirect = () =>{
+        this.setState({
+            redirect: true
+        })
+        // Quand redirection devient vraie cest a dire la personne cest loger correctement
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/Sign-In'/>
+            // Redirige vers Dashboard 
+        }
+    }
+
+    
 
     inputName = (event) => {
-        this.setState({ name: event.target.value });
+        this.setState({ name: event.target.value  });
     };
 
     inputEmail = (event) => {
@@ -40,14 +64,20 @@ class SignUp extends Component {
 
         axios.post("http://localhost:4000/sign-up", user)
             .then(res => {
+                this.setState({ password: '',email: '',name: '', avatar:'' });
                 console.log(res);
                 console.log(res.data);
+                this.setRedirect();
+                // Redirige vers SignIn
+
             });
     };
 
     render() {
         return (
+
             <div>
+                 {this.renderRedirect()}
                 <Jumbotron>
                     <h1>Bienvenue sur Jolieplante !</h1>
                     <p>Veuillez vous enregistrer </p>
