@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from 'axios'
-
+import { connect } from 'react-redux';
+import { createstoreproducts } from '../store/action/products';
 
 class CreateProducts extends Component {
     state = {
@@ -46,6 +47,10 @@ class CreateProducts extends Component {
             .then(res => {
                 console.log(res)
                 console.log(res.data)
+
+                this.props.createproductsforstore(res.data)
+
+                
             })
     }
     render() {
@@ -95,4 +100,6 @@ class CreateProducts extends Component {
     }
 
 }
-export default CreateProducts;
+const mapDispatchToProps = {createstoreproducts }
+
+export default connect(mapDispatchToProps)(CreateProducts);

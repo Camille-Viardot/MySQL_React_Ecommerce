@@ -52,11 +52,10 @@ class Dashboard extends Component {
         
     render() {
         return (
-            <div>
+            <div> 
+                {this.props.token}
                <Jumbotron>
-
-                   <h1>Votre Page</h1>
-                   <p>{this.props.token}</p>
+                   <h1>Votre Page</h1>                
                <Form onSubmit={this.buttonSubmit}>
                         <Form.Group controlId="signUpName">
                             <Form.Label> Name </Form.Label>

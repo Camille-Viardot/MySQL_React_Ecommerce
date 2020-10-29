@@ -3,7 +3,7 @@ export const enregistreToken = (newToken) => ({
     token: newToken
 })
 
-export const changeAge = (newAge) => ({
-    type: "CHANGE_AGE",
-    age: newAge
+export const enregistreid = (keepid) => ({
+    type: "ENREGISTRE_ID",
+    id: keepid
 })

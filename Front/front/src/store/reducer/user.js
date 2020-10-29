@@ -1,5 +1,5 @@
 const initialStates = {
-    age:0,
+    id: '',
     token: ''
  };
  
@@ -10,10 +10,10 @@ const initialStates = {
          ...state,
          token: action.token,
        };
-     case "CHANGE_AGE":
+     case "ENREGISTRE_ID":
        return {
          ...state,
-         age: action.age,
+         id: action.id,
        };
      default:
        return {

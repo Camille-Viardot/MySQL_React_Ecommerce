@@ -18,8 +18,12 @@ import { createStore } from 'redux';
 import mainReducer from './store/reducer';
 import Header from './Component/Header'
 
-const store = createStore(mainReducer, window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION());
-
+//const store = createStore(mainReducer, window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION());
+/* eslint-disable no-underscore-dangle */
+  const store = createStore(
+   mainReducer, /* preloadedState, */
+   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ); /* eslint-enable */
 
 const myRouter = (
   <Provider store={store}>

@@ -3,18 +3,9 @@ import {  Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Header.css'
 import {connect} from 'react-redux'
-// import SignUp from './SignUp'
-// import SignIn from './SignIn'
-// import Home from './Home'
-// import Dashboard from './Dashboard'
-// import ProductList from './ProductList'
-// import ProductPage from './ProductPage'
-// import CreateProduct from './CreateProducts'
 
 
-
-
-class App extends Component {
+class Header extends Component {
 
   logout = () => {
     localStorage.clear();
@@ -76,5 +67,5 @@ const mapStateToProps = (state /*, ownProps*/) => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Header);
 //lie les states du store au props du component

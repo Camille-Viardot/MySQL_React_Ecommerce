@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken'
 //store
 import {connect} from 'react-redux'
 import { enregistreToken } from '../store/action/user';
+import {enregistreid} from '../store/action/user'
 //store
 
 
@@ -61,21 +62,27 @@ class SignIn extends Component {
             .then(res => {
                 console.log(res.data);
                 this.setState({ email: '' });
+                this.setState({ password: '' });
+                 // Modifie les donnees et les reboot ""
+
                 let decodetoken = jwt.decode (res.data.token);
                 // va decoder le jwt
                 console.log(decodetoken);
+
+                 this.setRedirect()
+                // Redirige vers Dashboard
+
                 localStorage.setItem("token" , res.data.token)
                 // enregistre le token pour localstorage
-                 localStorage.setItem("idkey" , decodetoken.id)
-                 this.props.enregistreToken(res.data.token)
+                 localStorage.setItem("idkey" , decodetoken.id) 
                 //  va recuperer le id dans decodetoken et le stock dans la clef idkey
-                this.setState({ password: '' });
-                 // Modifie les donnees et les reboot ""
-                this.setRedirect()
-                // Redirige vers Dashboard
+
+                this.props.enregistreToken(res.data.token)
+                // Recupere le token dans la data et Enregistre le token dans 'enregistretoken' qui sera c ontenu dans la props
+                this.props.enregistreid(decodetoken.id)
+                
                
-
-
+               
             })
             .catch(error => {
                 console.error(error)
@@ -114,6 +121,6 @@ class SignIn extends Component {
     }
 
 }
-const mapDispatchToProps = { enregistreToken }
+const mapDispatchToProps = { enregistreToken,enregistreid}
 export default connect(null, mapDispatchToProps )(SignIn);
 // mapDispatchToProps lie les actions a nos props du components 

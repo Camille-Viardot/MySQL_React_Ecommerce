@@ -6,14 +6,16 @@ import axios from 'axios'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom';
-//import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
-//import ProductPage from ProductPage
+//store
+import {connect} from 'react-redux'
+import { enregistreProducts } from '../store/action/products';
+//store
 
 class ProductList extends Component {
    
 
     state = {
-        products: [],
+        productslist: [],
     }
 
     componentDidMount() {
@@ -21,20 +23,23 @@ class ProductList extends Component {
         // On recupere la liste entiere
         axios.get(`http://localhost:4000/allproducts`) 
             .then(res => {
-                this.setState({ products: res.data });
-                // insere les data dans products
-              
+                this.setState({ productslist: res.data });
+                // insere les data dans productslist
+
+                this.props.enregistreProducts(res.data)
+                // enregistre les data dans la props 'enregistreProducts'
+
             })
     }
 
     render() {
         return (
             <div>
-                {console.log(this.state.products)}
+                {console.log(this.state.productslist)}
                 <h1> Hello </h1>
                 {/*.map itere le tableau product */}
-                { this.state.products.map(elem => {
-                    // parcours le tableau product grace a .map et insere dans elem
+                { this.props.products && this.props.products.map(elem => {
+                    // parcours le tableau productlist grace a .map et insere dans elem et le products de reducer
                     return (
                         <div>
                             <Card style={{ width: '18rem' }}>
@@ -57,4 +62,14 @@ class ProductList extends Component {
     }
 }
 
-export default ProductList;
+const mapStateToProps = (state /*, ownProps*/) => {
+    return {
+      products: state.productsreducer.products
+      //mapStateToProps permet de parcourir les props
+    }
+  }
+
+const mapDispatchToProps = {enregistreProducts}
+    //mapDispatchToProps dispatche l'action a toutes les props
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+
