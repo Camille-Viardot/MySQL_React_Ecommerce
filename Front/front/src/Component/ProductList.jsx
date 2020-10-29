@@ -21,7 +21,7 @@ class ProductList extends Component {
     componentDidMount() {
         
         // On recupere la liste entiere
-        axios.get(`http://localhost:4000/allproducts`) 
+        axios.get(`http://localhost:4000/allproducts/1`) 
             .then(res => {
                 this.setState({ productslist: res.data });
                 // insere les data dans productslist

@@ -67,8 +67,8 @@ router.post('/products', function (req, res) {
     }
 })
 
-router.get('/productslist/:id', function (req, res) {
-    con.query(`SELECT productName, prix, photo FROM products INNER JOIN users ON users.id = products.user_affiliate WHERE users.id = '${req.params.id}'`, function (err, result) {
+router.get('/allproducts/:id', function (req, res) {
+    con.query(`SELECT productName, prix, photo, description, categorie FROM products INNER JOIN users ON users.id = products.user_affiliate WHERE users.id = '${req.params.id}'`, function (err, result) {
         if (err) throw (err)
         res.json(result)
     })
