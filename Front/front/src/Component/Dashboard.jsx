@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import axios from "axios";
 import {connect} from 'react-redux'
+import ProductProfil from './ProductProfil'
 
 
 
@@ -86,7 +87,7 @@ class Dashboard extends Component {
 
                </Jumbotron>
   
-
+            <ProductProfil />
             </div>
         )
     }
