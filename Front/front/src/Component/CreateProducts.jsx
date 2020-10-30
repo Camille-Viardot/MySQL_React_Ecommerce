@@ -102,4 +102,4 @@ class CreateProducts extends Component {
 }
 const mapDispatchToProps = {createstoreproducts }
 
-export default connect(mapDispatchToProps)(CreateProducts);
+export default connect(null, mapDispatchToProps)(CreateProducts);

@@ -41,7 +41,8 @@ class ProductList extends Component {
                 { this.props.products && this.props.products.map(elem => {
                     // parcours le tableau productlist grace a .map et insere dans elem et le products de reducer
                     return (
-                        <div>
+                        <div key={elem._id}>
+                          
                             <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={elem.photo} />
                             {/* Recupere photo dans elem */}
@@ -50,7 +51,7 @@ class ProductList extends Component {
                                     <Card.Text>
                                         {elem.prix}
                                     </Card.Text>
-                                   <Link to={`/ProductPage/${elem._id}`}> <Button variant="primary">Submit</Button></Link>
+                                   <Link to={`/product/${elem._id}`}> <Button variant="primary">Submit</Button></Link>
                                    {/* ${elem._id} recupere le id de la bdd et le log dans URL ETAPE 2 */ } 
                                 </Card.Body>
                             </Card>

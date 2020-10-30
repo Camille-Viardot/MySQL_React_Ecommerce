@@ -76,13 +76,20 @@ router.get('/productslist/:id', function (req, res) {
 
 router.get('/products/:id', function (req, res) {
     try {
-        con.query(`SELECT productName, prix, photo, description, categorie FROM products WHERE products.id = '${req.params.id}'`, (err, result) => {
+        con.query(`SELECT productName, prix, photo, description, categorie FROM products WHERE products._id = '${req.params.id}'`, (err, result) => {
             if (err) throw err
             res.json(result)
         })
     } catch (error) {
         console.log(error);
     }
+})
+
+router.get('/allproducts' , function (req, res){
+    con.query(`SELECT * FROM products`, (err, result) => {
+        if (err) res.send(err)
+        res.json(result)
+    })
 })
 
 
